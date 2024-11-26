@@ -52,7 +52,7 @@ check_and_update_dict(friends_dict)
 print_sorted_dict(friends_dict)
 
 
-#Problem Statement 7:Write a Python program that reads the contents of a file and counts the occurrences of each letter, prompting the user to enter the filename.
+'''#Problem Statement 7:Write a Python program that reads the contents of a file and counts the occurrences of each letter, prompting the user to enter the filename.'''
 def count_letter_occurrences(filename):
     try:
         with open(filename, 'r') as file:
@@ -89,3 +89,35 @@ def count_vowels_and_consonants(file_path):
 if __name__ == "__main__":
     filename = input("Enter the file name (with extension): ")
     count_vowels_and_consonants(filename)
+
+
+
+"""# 75.Expense Splitter mini project."""
+friends = {}
+total_expense = 0
+
+def add_expense(name, amount):
+    global total_expense
+    if name in friends:
+        friends[name] += amount
+    else:
+        friends[name] = amount
+    total_expense += amount
+
+def split_expenses():
+    print(f"Total expense: {total_expense}")
+    per_person_share = total_expense / len(friends)
+    for name, amount in friends.items():
+        balance = amount - per_person_share
+        if balance > 0:
+            print(f"{name} is owed {balance}")
+        elif balance < 0:
+            print(f"{name} owes {-balance}")
+        else:
+            print(f"{name} is settled up.")
+input_1=int(input("Enter the total number of entries of the users:"))
+for i in range(input_1):
+    a=input(f"Enter the name of the {i+1} person:")
+    b=float(input(f"Enter the expenses of {a}:"))
+    add_expense(a,b)
+split_expenses()
